@@ -26,7 +26,7 @@ dependencies {
 modifyPom {
     project {
         name 'Logback-Network'
-        description 'https://github.com/kontainers/logback-network.git'
+        description 'https://github.com/Kontainers/logback-network.git'
         url 'https://github.com/Kontainers/logback-network'
         inceptionYear '2020'
 
