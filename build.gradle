@@ -1,0 +1,99 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.bmuschko.nexus'
+
+group = 'io.kontainers'
+version = '1.0.0-SNAPSHOT'
+
+description = 'Useful classes from Logback 1.3.0 alpha version built to be used with Logback 1.2.3'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ch.qos.logback:logback:1.2.3'
+}
+
+modifyPom {
+    project {
+        name 'Logback-Network'
+        description 'https://github.com/kontainers/logback-network.git'
+        url 'https://github.com/Kontainers/logback-network'
+        inceptionYear '2020'
+
+        scm {
+            url 'https://github.com/Kontainers/logback-network'
+            connection 'scm:git://github.com/Kontainers/logback-network.git'
+            developerConnection 'scm:git://github.com/Kontainers/logback-network.git'
+        }
+
+        licenses {
+            license {
+                name 'GNU Lesser General Public License'
+                url 'http://logback.qos.ch/license.html'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'pjfanning'
+                name 'PJ Fanning'
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'Useful classes from Logback 1.3.0 alpha version built to be used with Logback 1.2.3'
+            name 'Logback Network'
+            url 'https://github.com/Kontainers/logback-network'
+            organization {
+                name 'io.kontainers'
+                url 'https://github.com/Kontainers'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/Kontainers/logback-network/issues'
+            }
+            licenses {
+                license {
+                    name 'GNU Lesser General Public License'
+                    url 'http://logback.qos.ch/license.html'
+                }
+            }
+            scm {
+                url 'https://github.com/Kontainers/logback-network'
+                connection 'scm:git:git://github.com/Kontainers/logback-network.git'
+                developerConnection 'scm:git:ssh://git@github.com:Kontainers/logback-network.git'
+            }
+            developers {
+                developer {
+                    id 'pjfanning'
+                    name 'PJ Fanning'
+                }
+            }
+        }
+    }
+}
