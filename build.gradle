@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'ch.qos.logback:logback:1.2.3'
+    implementation 'ch.qos.logback:logback-core:1.2.3'
 }
 
 modifyPom {
