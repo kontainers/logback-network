@@ -11,7 +11,7 @@ apply plugin: 'java'
 apply plugin: 'com.bmuschko.nexus'
 
 group = 'io.kontainers'
-version = '1.0.0'
+version = '1.0.1-SNAPSHOT'
 
 description = 'Useful classes from Logback 1.3.0 alpha version built to be used with Logback 1.2.3'
 
