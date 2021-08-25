@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'ch.qos.logback:logback-core:1.2.3'
-    testImplementation 'junit:junit:4.13'
+    implementation 'ch.qos.logback:logback-core:1.2.5'
+    testImplementation 'junit:junit:4.13.2'
 }
 
 modifyPom {
